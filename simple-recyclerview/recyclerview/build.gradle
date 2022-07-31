@@ -1,0 +1,32 @@
+buildscript {
+    ext.kotlin_version = '1.5.20'
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url 'https://repo1.maven.org/maven2'
+        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.0.4'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.hiya:jacoco-android:0.2'
+    }
+}
+
+plugins {
+    id 'io.gitlab.arturbosch.detekt' version '1.6.0'
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        google()
+        // Required to save compatibility with detekt
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
